@@ -1,7 +1,10 @@
 //b1 import lib express
 
 import express from 'express'
+import pool from './db.js';
 
+import { OK ,INTERNAL_SEVER} from './const.js';
+import rootRouters from './src/routes/root.router.js';
 
 
 
@@ -15,6 +18,10 @@ const app = express();
 app.use(express.json())
 
 
+
+//import thong qua rootRouter
+
+app.use(rootRouters)
 app.get("/",(req,res)=>{
 
     res.send("hello node44")
@@ -24,17 +31,17 @@ app.get("/test",(req,res)=>{
 
 })
 //demo get params tu URL
-app.post("/users/:id/:hoten",(req,res)=>{
+// app.post("/users/:id/:hoten",(req,res)=>{
 
-    let params = req.params;
+//     let params = req.params;
 
-    let{id,hoten} = params;
-    let body = req.body;
- res.send({
-    id,
-    hoten
- })
-})
+//     let{id,hoten} = params;
+//     let body = req.body;
+//  res.send({
+//     id,
+//     hoten
+//  })
+// })
 
 //demo get query tu URL
     app.get('/test-query',(req,res)=>{
@@ -49,6 +56,21 @@ res.send(query)
 let headers = req.headers;
 res.send(headers);
     })
+
+    // app.get("/users",async(req,res) => {
+
+    //   try {
+    //     const [data ] = await pool.query(`
+    //         SELECT * FROM users
+    //         LIMIT 1
+    //         `)
+    //     res.status(OK).json(data)
+    //   }
+    //    catch (error) {
+    //     res.status(INTERNAL_SEVER).json({message:"error"})
+    //   }
+    // }
+    // )
  app.listen(8080,()=>{
     console.log("Server is starting with port 8080")
  })
