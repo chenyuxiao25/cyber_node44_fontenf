@@ -1,10 +1,11 @@
 //b1 import lib express
 
 import express from 'express'
-import pool from './db.js';
+// import pool from './db.js';
 
-import { OK ,INTERNAL_SEVER} from './const.js';
+// import { OK ,INTERNAL_SEVER} from './const.js';
 import rootRouters from './src/routes/root.router.js';
+import cors from 'cors'
 
 
 
@@ -14,22 +15,23 @@ const app = express();
 //param  1 :define port backand
 //param 2 :la 1 callback function 
 
-//them middleware
+//them middleware de doc data json  `
 app.use(express.json())
-
-
+//them middle ware cors 
+//de backend ket noi voi fontend
+app.use(cors())
 
 //import thong qua rootRouter
 
 app.use(rootRouters)
-app.get("/",(req,res)=>{
+// app.get("/",(req,res)=>{
 
-    res.send("hello node44")
-})
-app.get("/test",(req,res)=>{
-    res.send("test api ")
+//     res.send("hello node44")
+// })
+// app.get("/test",(req,res)=>{
+//     res.send("test api ")
 
-})
+// })
 //demo get params tu URL
 // app.post("/users/:id/:hoten",(req,res)=>{
 
