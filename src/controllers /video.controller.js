@@ -41,6 +41,7 @@ const getListVideoType = async (req,res) => {
     )   
     return res.status(200).json(data);
   } catch (error) {
+    console.log(error)
     return res.status(500).json({message:'erros'})
   }
 }
@@ -51,11 +52,11 @@ const getVideoPage = async (req,res) => {
 
 size  = parseInt(size,10);
 
-if(isNaN(page) ||page < 0 ){
+if(isNaN(page) ||page <= 0 ){
   return res.status(400).json({message:"page is wrong"})
 }
 
-if(isNaN(page) ||size < 0){
+if(isNaN(page) ||size <= 0){
   return res.status(400).json({message:"page is wrong"})
 
 }
